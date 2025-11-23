@@ -1,9 +1,9 @@
 const styles = {
-  critical: { background: '#f87171', color: '#7f1d1d' },
-  urgent: { background: '#fb923c', color: '#7c2d12' },
-  important: { background: '#facc15', color: '#713f12' },
-  normal: { background: '#a5b4fc', color: '#1e3a8a' },
-  low: { background: '#cbd5f5', color: '#374151' }
+  critical: 'bg-red-100 text-red-800 dark:bg-red-500/10 dark:text-red-400',
+  urgent: 'bg-orange-100 text-orange-800 dark:bg-orange-500/10 dark:text-orange-400',
+  important: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-500/10 dark:text-yellow-400',
+  normal: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-500/10 dark:text-indigo-400',
+  low: 'bg-slate-100 text-slate-800 dark:bg-slate-500/10 dark:text-slate-400'
 };
 
 const labels = {
@@ -15,20 +15,12 @@ const labels = {
 };
 
 const PriorityBadge = ({ label = 'normal' }) => {
-  const style = styles[label] || styles.normal;
+  const className = styles[label] || styles.normal;
   const text = labels[label] || label;
+  
   return (
-    <span
-      style={{
-        ...style,
-        padding: '0.2rem 0.6rem',
-        borderRadius: '999px',
-        fontWeight: 600,
-        fontSize: '0.75rem',
-        letterSpacing: 0.3
-      }}
-    >
-      {text.toUpperCase()}
+    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium uppercase tracking-wide ${className}`}>
+      {text}
     </span>
   );
 };

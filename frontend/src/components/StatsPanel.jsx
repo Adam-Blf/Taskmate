@@ -26,15 +26,21 @@ const StatsPanel = () => {
 
   return (
     <section className="card">
-      <header className="card-header">
-        <h2>Statistiques d&apos;efficacité</h2>
-        {isLoading && <span className="caption">Chargement…</span>}
+      <header className="flex items-center justify-between mb-6">
+        <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Statistiques</h2>
+        {isLoading && (
+          <span className="text-xs text-slate-500 dark:text-slate-400 animate-pulse">
+            Mise à jour...
+          </span>
+        )}
       </header>
-      <div className="stats-grid">
+      <div className="grid grid-cols-2 gap-4">
         {metrics.map((metric) => (
-          <div key={metric.key} className="stat-tile">
-            <span className="stat-label">{metric.label}</span>
-            <strong className="stat-value">
+          <div key={metric.key} className="bg-slate-50 dark:bg-dark-700/50 p-4 rounded-lg border border-slate-100 dark:border-dark-700">
+            <span className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">
+              {metric.label}
+            </span>
+            <strong className="block text-xl font-bold text-slate-900 dark:text-white">
               {formatValue(data?.[metric.key], metric.suffix)}
             </strong>
           </div>
