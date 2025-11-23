@@ -1,6 +1,7 @@
 import { spawn } from 'child_process';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
+import { existsSync } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -87,6 +88,11 @@ const runPythonProcess = (commands, payload) =>
   });
 
 export const prioritizeTask = async (taskData) => {
+  if (!existsSync(scriptPath)) {
+    console.warn(`ML script not found at ${scriptPath}, skipping Python execution.`);
+    return fallbackPrioritization(taskData);
+  }
+
   const pythonCandidates = Array.from(
     new Set(
       [process.env.PYTHON_PATH, 'python', 'python3'].filter(Boolean)

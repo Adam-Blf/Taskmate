@@ -9,16 +9,30 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+let isDbConnected = false;
+
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/taskmate';
 mongoose.set('strictQuery', false);
 mongoose
   .connect(mongoUri)
   .then(() => {
+    isDbConnected = true;
     console.log('Connected to MongoDB');
   })
   .catch((err) => {
     console.error('MongoDB connection error', err);
   });
+
+// Middleware to check DB connection
+app.use('/api', (req, res, next) => {
+  if (!isDbConnected && req.path !== '/health') {
+    return res.status(503).json({ 
+      message: 'Service unavailable: Database not connected',
+      retryAfter: 5
+    });
+  }
+  next();
+});
 
 app.use('/api/tasks', taskRouter);
 
