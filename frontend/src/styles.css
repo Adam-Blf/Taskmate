@@ -1,8 +1,30 @@
 :root {
   color-scheme: light;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: #f5f7fb;
-  color: #1f2933;
+  background-color: #f8fafc;
+  color: #0f172a;
+  
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --text-secondary: #64748b;
+  --input-bg: #f8fafc;
+  --input-bg-focus: #ffffff;
+}
+
+body.dark-mode {
+  color-scheme: dark;
+  background-color: #0f172a;
+  color: #f1f5f9;
+  
+  --primary: #60a5fa;
+  --primary-hover: #3b82f6;
+  --surface: #1e293b;
+  --border: #334155;
+  --text-secondary: #94a3b8;
+  --input-bg: #0f172a;
+  --input-bg-focus: #1e293b;
 }
 
 * {
@@ -11,42 +33,106 @@
 
 body {
   margin: 0;
+  background-color: var(--background-color);
 }
 
 main.layout {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2.5rem 1.75rem 4rem;
+  padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .page-header h1 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.05em;
 }
 
 .page-header p {
-  margin: 0.5rem 0 0;
-  color: #52606d;
+  margin: 1rem auto 0;
+  color: var(--text-secondary);
   max-width: 60ch;
+  font-size: 1.125rem;
+  line-height: 1.6;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: 1.5rem;
+  gap: 2rem;
+  align-items: start;
 }
 
 .card {
-  background-color: #ffffff;
-  border-radius: 18px;
-  padding: 1.75rem;
-  box-shadow: 0 15px 35px -20px rgba(15, 23, 42, 0.35);
+  background-color: var(--surface);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+/* Modern Inputs */
+input, select, textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background-color: var(--input-bg);
+  color: inherit;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background-color: var(--input-bg-focus);
+}
+
+/* Modern Buttons */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+button.primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+}
+
+button.primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 8px -1px rgba(59, 130, 246, 0.4);
 }
 
 .card-header {
@@ -87,20 +173,21 @@ main.layout {
 
 .form-grid input,
 .form-grid textarea {
-  border: 1px solid #d0d3d9;
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 0.55rem 0.75rem;
   font: inherit;
-  background-color: #f9fafc;
+  background-color: var(--input-bg);
+  color: inherit;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-grid input:focus,
 .form-grid textarea:focus {
   outline: none;
-  border-color: #6366f1;
+  border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-  background-color: #fff;
+  background-color: var(--input-bg-focus);
 }
 
 .form-grid textarea {

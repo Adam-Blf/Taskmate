@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import TaskForm from './components/TaskForm.jsx';
 import TaskList from './components/TaskList.jsx';
 import StatsPanel from './components/StatsPanel.jsx';
@@ -17,6 +17,20 @@ const App = () => {
 
   const [editingTask, setEditingTask] = useState(null);
   const [processingId, setProcessingId] = useState(null);
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+  };
 
   const isSubmitting = createTask.isLoading || updateTask.isLoading;
 
@@ -68,8 +82,30 @@ const App = () => {
   return (
     <main className="layout">
       <header className="page-header">
-        <div>
+        <div style={{ position: 'relative' }}>
           <h1>TaskMate</h1>
+          <button 
+            onClick={toggleTheme}
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'transparent',
+              border: '1px solid var(--border)',
+              borderRadius: '50%',
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '1.2rem',
+              color: 'var(--text-secondary)'
+            }}
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
           <p>
             Gérez votre to-do list et laissez l&apos;IA légère classer vos priorités en urgent /
             important.
