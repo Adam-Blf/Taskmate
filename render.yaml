@@ -1,0 +1,15 @@
+services:
+  # Taskmate Backend (Node.js)
+  - type: web
+    name: taskmate-backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    branch: main
+    rootDir: backend
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
