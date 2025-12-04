@@ -3,6 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import taskRouter from './routes/taskRoutes.js';
 import noteRouter from './routes/noteRoutes.js';
+import geminiRouter from './routes/geminiRoutes.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 
 const app = express();
@@ -37,6 +38,7 @@ app.use('/api', (req, res, next) => {
 
 app.use('/api/tasks', taskRouter);
 app.use('/api/notes', noteRouter);
+app.use('/api/gemini', geminiRouter);
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
