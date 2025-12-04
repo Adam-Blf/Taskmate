@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import taskRouter from './routes/taskRoutes.js';
+import projectRouter from './routes/projectRoutes.js';
+import noteRouter from './routes/noteRoutes.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 
 const app = express();
@@ -35,6 +37,8 @@ app.use('/api', (req, res, next) => {
 });
 
 app.use('/api/tasks', taskRouter);
+app.use('/api/projects', projectRouter);
+app.use('/api/notes', noteRouter);
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });

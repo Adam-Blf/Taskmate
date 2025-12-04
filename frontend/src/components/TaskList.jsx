@@ -74,6 +74,13 @@ const TaskList = ({ tasks, onEdit, onToggleComplete, onDelete, isProcessing }) =
                           ))}
                         </div>
                       )}
+                      {!!task.project && (
+                        <div className="mt-2">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                            📁 {task.project.title}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </td>
                   <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-400 whitespace-nowrap">
