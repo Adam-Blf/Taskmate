@@ -24,7 +24,6 @@ const noteSchema = new mongoose.Schema(
 
 // Index for full-text search and finding notes by title (for WikiLinks)
 noteSchema.index({ title: 'text', 'blocks.content': 'text' });
-noteSchema.index({ title: 1 }); // Optimize lookup by exact title
 
 const Note = mongoose.model('Note', noteSchema);
 
