@@ -2,6 +2,8 @@ import { useMemo, useState, useEffect } from 'react';
 import TaskForm from './components/TaskForm.jsx';
 import TaskList from './components/TaskList.jsx';
 import StatsPanel from './components/StatsPanel.jsx';
+import ProjectList from './components/ProjectList.jsx';
+import NoteList from './components/NoteList.jsx';
 import {
   useCreateTask,
   useDeleteTask,
@@ -10,6 +12,7 @@ import {
 } from './hooks/useTasks.js';
 
 const App = () => {
+  const [view, setView] = useState('tasks'); // 'tasks', 'projects', 'notes'
   const { data: tasks = [], isLoading, isError, error, refetch } = useTasks();
   const createTask = useCreateTask();
   const updateTask = useUpdateTask();
@@ -79,6 +82,41 @@ const App = () => {
     });
   };
 
+  const renderContent = () => {
+    switch (view) {
+      case 'projects':
+        return <ProjectList />;
+      case 'notes':
+        return <NoteList />;
+      case 'tasks':
+      default:
+        return (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-8">
+              <TaskForm
+                initialTask={editingTask}
+                isSubmitting={isSubmitting}
+                onSubmit={handleCreateOrUpdate}
+                onCancel={() => setEditingTask(null)}
+              />
+              <TaskList
+                tasks={sortedTasks}
+                isProcessing={processingId}
+                onEdit={setEditingTask}
+                onToggleComplete={handleToggleComplete}
+                onDelete={handleDelete}
+              />
+            </div>
+            <div className="lg:col-span-1">
+              <div className="sticky top-24">
+                <StatsPanel />
+              </div>
+            </div>
+          </div>
+        );
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-dark-900 text-slate-900 dark:text-slate-100 transition-colors duration-200 font-sans">
       <header className="bg-white dark:bg-dark-800 shadow-sm border-b border-slate-200 dark:border-dark-700 sticky top-0 z-10 backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80">
@@ -93,6 +131,39 @@ const App = () => {
               TaskMate
             </h1>
           </div>
+
+          <nav className="flex gap-4">
+            <button
+              onClick={() => setView('tasks')}
+              className={`px-3 py-2 rounded-md transition-colors ${
+                view === 'tasks'
+                  ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300'
+                  : 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-dark-700'
+              }`}
+            >
+              Tasks
+            </button>
+            <button
+              onClick={() => setView('projects')}
+              className={`px-3 py-2 rounded-md transition-colors ${
+                view === 'projects'
+                  ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300'
+                  : 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-dark-700'
+              }`}
+            >
+              Projects
+            </button>
+            <button
+              onClick={() => setView('notes')}
+              className={`px-3 py-2 rounded-md transition-colors ${
+                view === 'notes'
+                  ? 'bg-primary-100 text-primary-700 dark:bg-primary-900/50 dark:text-primary-300'
+                  : 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-dark-700'
+              }`}
+            >
+              Notes
+            </button>
+          </nav>
           
           <button
             onClick={toggleTheme}
@@ -113,28 +184,7 @@ const App = () => {
       </header>
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
-            <TaskForm
-              initialTask={editingTask}
-              isSubmitting={isSubmitting}
-              onSubmit={handleCreateOrUpdate}
-              onCancel={() => setEditingTask(null)}
-            />
-            <TaskList
-              tasks={sortedTasks}
-              isProcessing={processingId}
-              onEdit={setEditingTask}
-              onToggleComplete={handleToggleComplete}
-              onDelete={handleDelete}
-            />
-          </div>
-          <div className="lg:col-span-1">
-            <div className="sticky top-24">
-              <StatsPanel />
-            </div>
-          </div>
-        </div>
+        {renderContent()}
       </main>
 
       {(isLoading || isError) && (

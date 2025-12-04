@@ -11,7 +11,8 @@ const taskSchema = new mongoose.Schema(
     urgency: { type: Number, default: 0 },
     importance: { type: Number, default: 0 },
     priorityLabel: { type: String, default: 'normal' },
-    completedAt: { type: Date }
+    completedAt: { type: Date },
+    project: { type: mongoose.Schema.Types.ObjectId, ref: 'Project' }
   },
   { timestamps: true }
 );

@@ -4,7 +4,7 @@ import { buildStats } from '../utils/stats.js';
 
 export const listTasks = async (_req, res, next) => {
   try {
-    const tasks = await Task.find().sort({ createdAt: -1 });
+    const tasks = await Task.find().populate('project', 'title').sort({ createdAt: -1 });
     res.json(tasks);
   } catch (error) {
     next(error);

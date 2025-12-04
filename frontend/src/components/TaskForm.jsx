@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useQuery } from 'react-query';
+import { fetchProjects } from '../api/projects';
 
 const defaultValues = {
   title: '',
@@ -6,7 +8,8 @@ const defaultValues = {
   dueDate: '',
   estimatedMinutes: 60,
   tags: [],
-  completed: false
+  completed: false,
+  project: ''
 };
 
 const toLocalInputValue = (value) => {
@@ -31,6 +34,7 @@ const TaskForm = ({ initialTask, onSubmit, isSubmitting, onCancel }) => {
   const [formValues, setFormValues] = useState(defaultValues);
   const [tagsInput, setTagsInput] = useState('');
 
+  const { data: projects } = useQuery(['projects'], fetchProjects);
   const isEditMode = Boolean(initialTask?._id);
 
   useEffect(() => {
@@ -41,7 +45,8 @@ const TaskForm = ({ initialTask, onSubmit, isSubmitting, onCancel }) => {
         dueDate: initialTask.dueDate ? toLocalInputValue(initialTask.dueDate) : '',
         estimatedMinutes: initialTask.estimatedMinutes ?? 60,
         completed: Boolean(initialTask.completed),
-        tags: initialTask.tags ?? []
+        tags: initialTask.tags ?? [],
+        project: initialTask.project?._id || initialTask.project || ''
       });
       setTagsInput((initialTask.tags ?? []).join(', '));
     } else {
@@ -69,7 +74,8 @@ const TaskForm = ({ initialTask, onSubmit, isSubmitting, onCancel }) => {
       ...formValues,
       tags: normalizeTags(tagsInput),
       estimatedMinutes: Number(formValues.estimatedMinutes) || 60,
-      dueDate: formValues.dueDate ? new Date(formValues.dueDate).toISOString() : null
+      dueDate: formValues.dueDate ? new Date(formValues.dueDate).toISOString() : null,
+      project: formValues.project || undefined
     };
     onSubmit?.(payload);
   };
@@ -111,6 +117,25 @@ const TaskForm = ({ initialTask, onSubmit, isSubmitting, onCancel }) => {
             value={formValues.title}
             onChange={handleChange}
           />
+        </div>
+
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+            Projet
+          </label>
+          <select
+            name="project"
+            className="input w-full"
+            value={formValues.project}
+            onChange={handleChange}
+          >
+            <option value="">Aucun projet</option>
+            {projects?.map((p) => (
+              <option key={p._id} value={p._id}>
+                {p.title}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="space-y-2 md:col-span-2">
