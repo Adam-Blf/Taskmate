@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import taskRouter from './routes/taskRoutes.js';
 import noteRouter from './routes/noteRoutes.js';
 import geminiRouter from './routes/geminiRoutes.js';
+import keepAliveService from './services/keepAlive.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 
 const app = express();
@@ -17,7 +18,9 @@ let isDbConnected = false;
 app.get('/api/health', (_req, res) => {
   res.json({ 
     status: 'ok',
-    database: isDbConnected ? 'connected' : 'connecting'
+    database: isDbConnected ? 'connected' : 'connecting',
+    keepAlive: keepAliveService.getStatus(),
+    timestamp: new Date().toISOString()
   });
 });
 
