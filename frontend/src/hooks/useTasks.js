@@ -8,7 +8,11 @@ import {
 
 export const useTasks = () =>
   useQuery(['tasks'], fetchTasks, {
-    staleTime: 1000 * 30
+    staleTime: 1000 * 30,
+    retry: 2, // Réessayer seulement 2 fois
+    retryDelay: 2000, // Attendre 2 secondes entre les tentatives
+    refetchOnWindowFocus: false, // Ne pas recharger au focus
+    refetchInterval: false // Désactiver le rechargement automatique
   });
 
 export const useCreateTask = () => {
