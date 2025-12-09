@@ -1,3 +1,11 @@
+Dernier commit: 04/12/2025 | Langage principal: JavaScript | Nombre de langages: 4
+
+Construit avec les outils et technologies : 
+JavaScript, Python, CSS, HTML
+
+🇫🇷 Français | 🇬🇧 Anglais | 🇪🇸 Espagnol | 🇮🇹 Italien | 🇵🇹 Portugais | 🇷🇺 Russe | 🇩🇪 Allemand | 🇹🇷 Turc
+
+
 # TaskMate – Gestionnaire de Tâches Intelligent / Smart Task Manager
 
 [🇫🇷 Version Française](#version-française) | [🇬🇧 English Version](#english-version)
