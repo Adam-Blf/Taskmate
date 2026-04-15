@@ -376,3 +376,9 @@ This project is open source. See LICENSE file for details.
 **Built for smart task management with AI prioritization**
 
 For issues or feature requests, open an issue on the project repository.
+
+---
+
+<p align="center">
+  <sub>Par <a href="https://adam.beloucif.com">Adam Beloucif</a> · Data Engineer & Fullstack Developer · <a href="https://github.com/Adam-Blf">GitHub</a></sub>
+</p>
