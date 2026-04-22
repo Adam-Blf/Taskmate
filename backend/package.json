@@ -1,6 +1,6 @@
 {
   "name": "taskmate-backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TaskMate backend API with intelligent prioritization",
   "main": "src/server.js",
   "type": "module",
