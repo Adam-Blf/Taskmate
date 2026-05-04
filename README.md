@@ -2,6 +2,11 @@
 
 # TaskMate – Gestionnaire de Tâches Intelligent / Smart Task Manager
 
+<!-- adam-badges:start -->
+[![commits](https://img.shields.io/github/commit-activity/t/Adam-Blf/Taskmate?color=001329&label=commits&style=flat-square)](https://github.com/Adam-Blf/Taskmate/commits) [![visites](https://hits.sh/github.com/Adam-Blf/Taskmate.svg?style=flat-square&label=visites&color=001329)](https://hits.sh/github.com/Adam-Blf/Taskmate/) [![last commit](https://img.shields.io/github/last-commit/Adam-Blf/Taskmate?color=D4A437&style=flat-square&label=dernier%20push)](https://github.com/Adam-Blf/Taskmate/commits) [![top language](https://img.shields.io/github/languages/top/Adam-Blf/Taskmate?style=flat-square)](https://github.com/Adam-Blf/Taskmate) [![license](https://img.shields.io/github/license/Adam-Blf/Taskmate?style=flat-square&color=D4A437)](LICENSE)
+<!-- adam-badges:end -->
+
+
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)
