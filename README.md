@@ -22,6 +22,27 @@
 
 Application complète (React + Node.js + MongoDB + scikit-learn) qui combine gestion de tâches, priorisation automatisée et statistiques d'efficacité. Architecture prête pour GitHub démontrant un front moderne, un backend Express structuré et un volet machine learning léger pour classifier les tâches.
 
+## Architecture
+
+```mermaid
+flowchart TB
+    FRONT["frontend<br/>React 18 · Vite · React Query"]
+    API["backend/src<br/>Express · routes tasks · notes · projects"]
+    CTRL["controllers<br/>logique métier"]
+    PRIOR["services/prioritizer.js<br/>appel ML · fallback heuristique"]
+    GEMINI["services/geminiService.js<br/>assistance LLM"]
+    ML["ml/predict.py<br/>TF-IDF · LogisticRegression"]
+    MODEL["model.pkl · vectorizer.pkl<br/>artefacts scikit-learn"]
+    DB["MongoDB<br/>Mongoose · Task · Note · Project"]
+    FRONT --> API
+    API --> CTRL
+    CTRL --> PRIOR
+    CTRL --> GEMINI
+    PRIOR --> ML
+    ML --> MODEL
+    CTRL --> DB
+```
+
 ### ✨ Fonctionnalités
 
 - ✏️ **CRUD Complet**: gestion des tâches (titre, description, échéance, durée estimée, tags, statut)
