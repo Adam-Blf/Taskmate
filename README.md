@@ -1,6 +1,6 @@
 ![version](https://img.shields.io/badge/version-1.0.1-DC0A2D?style=flat-square) ![mern](https://img.shields.io/badge/mern-stack-141418?style=flat-square) ![license](https://img.shields.io/badge/license-MIT-424242?style=flat-square) ![type](https://img.shields.io/badge/type-data--sci-4CAF50?style=flat-square)
 
-# TaskMate – Gestionnaire de Tâches Intelligent / Smart Task Manager
+# TaskMate - Gestionnaire de Tâches Intelligent / Smart Task Manager
 
 <!-- adam-badges:start -->
 [![commits](https://img.shields.io/github/commit-activity/t/Adam-Blf/Taskmate?color=001329&label=commits&style=flat-square)](https://github.com/Adam-Blf/Taskmate/commits) [![visites](https://hits.sh/github.com/Adam-Blf/Taskmate.svg?style=flat-square&label=visites&color=001329)](https://hits.sh/github.com/Adam-Blf/Taskmate/) [![last commit](https://img.shields.io/github/last-commit/Adam-Blf/Taskmate?color=D4A437&style=flat-square&label=dernier%20push)](https://github.com/Adam-Blf/Taskmate/commits) [![top language](https://img.shields.io/github/languages/top/Adam-Blf/Taskmate?style=flat-square)](https://github.com/Adam-Blf/Taskmate) [![license](https://img.shields.io/github/license/Adam-Blf/Taskmate?style=flat-square&color=D4A437)](LICENSE)
@@ -26,14 +26,14 @@ Application complète (React + Node.js + MongoDB + scikit-learn) qui combine ges
 
 ```mermaid
 flowchart TB
-    FRONT["frontend<br/>React 18 · Vite · React Query"]
-    API["backend/src<br/>Express · routes tasks · notes · projects"]
+    FRONT["frontend<br/>React 18 - Vite - React Query"]
+    API["backend/src<br/>Express - routes tasks - notes - projects"]
     CTRL["controllers<br/>logique métier"]
-    PRIOR["services/prioritizer.js<br/>appel ML · fallback heuristique"]
+    PRIOR["services/prioritizer.js<br/>appel ML - fallback heuristique"]
     GEMINI["services/geminiService.js<br/>assistance LLM"]
-    ML["ml/predict.py<br/>TF-IDF · LogisticRegression"]
-    MODEL["model.pkl · vectorizer.pkl<br/>artefacts scikit-learn"]
-    DB["MongoDB<br/>Mongoose · Task · Note · Project"]
+    ML["ml/predict.py<br/>TF-IDF - LogisticRegression"]
+    MODEL["model.pkl - vectorizer.pkl<br/>artefacts scikit-learn"]
+    DB["MongoDB<br/>Mongoose - Task - Note - Project"]
     FRONT --> API
     API --> CTRL
     CTRL --> PRIOR
@@ -404,7 +404,7 @@ For issues or feature requests, open an issue on the project repository.
 ---
 
 <p align="center">
-  <sub>Par <a href="https://adam.beloucif.com">Adam Beloucif</a> · Data Engineer & Fullstack Developer · <a href="https://github.com/Adam-Blf">GitHub</a> · <a href="https://www.linkedin.com/in/adambeloucif/">LinkedIn</a></sub>
+  <sub>Par <a href="https://adam.beloucif.com">Adam Beloucif</a> - Data Engineer & Fullstack Developer - <a href="https://github.com/Adam-Blf">GitHub</a> - <a href="https://www.linkedin.com/in/adambeloucif/">LinkedIn</a></sub>
 </p>
 
 
